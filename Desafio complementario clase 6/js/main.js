@@ -21,6 +21,8 @@ class Usuario{
 const Usuarios = [];
 
 //Declaracion de funciones
+
+//Validacion de String
 function validarString(){
     if(!usuario.match("[A-Za-z]{3,10}")){
         do{
@@ -33,6 +35,7 @@ function validarString(){
     }
 }
 
+//validacion si el usuario existe dentro del array
 function validarUser(usuario){
     if (Usuarios.some(username => username.user === usuario)){
         return true;
@@ -41,7 +44,7 @@ function validarUser(usuario){
     }
 }
 
-
+//validacion de password de mas de 8 caracteres
 function validarPassword(){
     if(password.length < 8){
         do{
@@ -54,6 +57,7 @@ function validarPassword(){
     }
 }
 
+//funcion para comparar y ordenar por orden alfabetico
 function compare( a, b ) {
     if ( a.user < b.user){
       return -1;
@@ -70,19 +74,18 @@ function compare( a, b ) {
 
 //comienzo de programa
 do{
+    //Menu
     opcion = prompt("Bienvenido a Clouds Accesorios! por favor ingrese una opcion para continuar: \n 'ingresar' para inciar sesion \n 'Registrarse' para crear una cuenta \n 'Mostrar' para mostrar la lista de usuarios \n 'Ordenar' para ordenar en orden alfabetico y mostrar la lista de usuarios \n 'Salir' para retirarse");
     switch(opcion){
         case 'ingresar':
             usuario = prompt("ingrese su usuario: ");
             validarString();
             validarUser(usuario);
-            console.log(validarString())
-            console.log(validarUser(usuario));
             password = prompt("ingrese su contraseña: ");
             validarPassword();
-            console.log(validarPassword());
 
             if(validarUser(usuario) && validarPassword()){
+                //Recorro el array para mostrar solo el usuario que se logueo
                 for(const _Usuario of Usuarios){
                     if(usuario === _Usuario.user){
                         _Usuario.saludo();
@@ -101,6 +104,7 @@ do{
             password = prompt("ingrese su contraseña: ");
             validarPassword();
 
+            //Valido que el usuario que quiera registar este disponible
             if(validarString() && validarPassword()){
                 if(!validarUser(usuario)) {
                     Usuarios.push(new Usuario(usuario,password));
@@ -122,11 +126,13 @@ do{
             break;
         
         case 'Mostrar':
+            //no supe como hacer para que muestre en un alert el array asi que lo muestro en consola 
             alert("mirar la consola!")
             console.table(Usuarios);
             
             break;
         case 'Ordenar':
+            //ordeno y muestro la lista ordenada
             Usuarios.sort( compare );
             alert("Se ordeno la lista de usuarios mirar la consola!");
             console.table(Usuarios);
@@ -140,10 +146,4 @@ do{
         default:
             alert("ingrese una opcion valida!");
     }
-    
-    console.table(Usuarios);
-
-
-
-    
 }while(salir == false);

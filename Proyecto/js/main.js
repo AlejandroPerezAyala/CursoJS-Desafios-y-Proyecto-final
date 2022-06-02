@@ -78,7 +78,7 @@ do{
     opcion = prompt("Bienvenido a Clouds Accesorios! por favor ingrese una opcion para continuar: \n 'Ingresar' para inciar sesion \n 'Registrarse' para crear una cuenta \n 'Mostrar' para mostrar la lista de usuarios \n 'Ordenar' para ordenar en orden alfabetico y mostrar la lista de usuarios \n 'Salir' para retirarse").toLowerCase();
     switch(opcion){
         case 'ingresar':
-            usuario = prompt("ingrese su usuario: ");
+            usuario = prompt("ingrese su usuario: ").toLowerCase();
             validarString();
             validarUser(usuario);
             password = prompt("ingrese su contraseña: ");
@@ -99,7 +99,7 @@ do{
             break;
 
         case 'registrarse':
-            usuario = prompt("ingrese su usuario: ");
+            usuario = prompt("ingrese su usuario: ").toLowerCase();
             validarString();
             password = prompt("ingrese su contraseña: ");
             validarPassword();
@@ -112,7 +112,7 @@ do{
                 } else {
                     do{
                         alert("El ususario ya existe!");
-                        usuario = prompt("ingrese su usuario: ");
+                        usuario = prompt("ingrese su usuario: ").toLowerCase();
                         validarString();
                     }while(validarUser(usuario));
 

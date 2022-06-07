@@ -97,6 +97,15 @@ function compare( a, b ) {
 
 
 //comienzo de programa
+
+cards = document.getElementById("productos");
+
+for(const producto of Productos){
+    newElement = document.createElement("figure");
+    newElement.innerHTML = producto.agregarCards();
+    cards.append(newElement);
+}
+
 do{
     //Menu
     opcion = prompt("Bienvenido a Clouds Accesorios! por favor ingrese una opcion para continuar: \n 'Ingresar' para inciar sesion \n 'Registrarse' para crear una cuenta \n 'Mostrar' para mostrar la lista de usuarios \n 'Ordenar' para ordenar en orden alfabetico y mostrar la lista de usuarios \n 'Salir' para retirarse").toLowerCase();
@@ -172,11 +181,3 @@ do{
     }
 }while(salir == false);
 
-cards = document.getElementById("productos");
-
-for(const producto of Productos){
-    newElement = document.createElement("figure");
-    newElement.innerHTML = producto.agregarCards();
-    cards.append(newElement);
-
-}

@@ -32,7 +32,7 @@ class Producto{
         return `<img src="${this.imagen}" alt="${this.imagen}" width="320px" height="400" class="rounded-2xl mx-auto "> 
                 <figcaption class="text-center bg-fuchsia-300 rounded-2xl w-80 mx-auto">${this.nombre}</figcaption> 
                 <p class="text-center bg-indigo-400 rounded-2xl w-80 mx-auto">${this.precio}</p>
-                <div class="flex justify-center m-3"><button id="btn" class="rounded-md p-1 text-white bg-sky-500" type="button" data-id=${this.id}>Comprar</button></div>`
+                `
                 
     }
 }
@@ -102,30 +102,55 @@ login = document.getElementById("login");
 
 
 for(const producto of Productos){
-    newElement = document.createElement("figure");
+    let newElement = document.createElement("figure");
+
+    let divBtn = document.createElement("div");
+
+    divBtn.classList.add("flex", "justify-center");
+
+    let btnBuy = document.createElement("button");
+    
+    let btnText = document.createTextNode("Comprar");
+
+    divBtn.appendChild(btnBuy)
+
+    btnBuy.appendChild(btnText);
+    
+    btnBuy.classList.add('rounded-md', 'p-1', 'text-white', 'bg-sky-500', 'btn')
+    
+    btnBuy.setAttribute("id", producto.id);
+    
     newElement.innerHTML = producto.agregarCards();
-    boton = document.getElementById("btn");
-    cards.append(newElement);
+    
+    cards.appendChild(newElement);
+    
+    newElement.appendChild(divBtn);
 }
+
+const boton = document.querySelectorAll(".btn");
+
+for(let i=0; i < boton.length ; i++){
+    boton[i].addEventListener("click", (e) => {
+        console.log(e.target);
+
+        Swal.fire({
+            position: 'bottom-end',
+            icon: 'success',
+            title: 'Agregaste el producto al carrito',
+            showConfirmButton: false,
+            timer: 1500,
+            toast: true
+          })
+    })
+}
+
+
+
+
 //evento de Login
 login.addEventListener('click', () => {
      programa();
 })
-//evento de boton comprar
-boton.addEventListener('click', (e)=> {
-    const button = e.target;
-    console.log(button);
-
-    Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: "Agregaste el producto al carrito",
-        showConfirmButton: false,
-        timer: 1500
-    })
-
-})
-
 
 
 const programa = () =>{
